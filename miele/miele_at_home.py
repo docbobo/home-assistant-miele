@@ -89,9 +89,11 @@ class MieleOAuth(object):
         
         
     def get_access_token(self, client_code):
+        _LOGGER.debug("_get_access_token(%s)", client_code)
         token = self._session.fetch_token(
             MieleOAuth.OAUTH_TOKEN_URL,
             code=client_code,
+            include_client_id=True,
             client_secret=self._client_secret)
         self._save_token(token)
 
